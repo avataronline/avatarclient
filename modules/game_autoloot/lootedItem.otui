@@ -1,0 +1,4 @@
+LootedItem < UIItem
+  virtual: true
+  size: 32 32
+  anchors.top: parent.top

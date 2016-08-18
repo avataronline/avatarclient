@@ -1,0 +1,57 @@
+SenseWindow < Window
+  id: sense
+  !text: tr("Sense Player")
+  size: 180 100
+  anchors.horizontalCenter: parent.horizontalCenter
+  anchors.verticalCenter: parent.verticalCenter
+  margin-left: -100
+  margin-top: -100
+  Label
+    !text: tr("Nick: ")
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 4
+
+  TextEdit
+    id: player
+    width: 110
+    anchors.top: parent.top
+    anchors.left: prev.right
+    margin-left: 5
+
+  Button
+    !text: tr("Ok")
+    width: 70
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    @onClick: function() modules.game_others.sense() end
+
+  Button
+    !text: tr("Cancel")
+    width: 70
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    @onClick: self:getParent():destroy()
+
+PopupMenu
+  id: main
+  width: 100
+  PopupMenuButton
+    !text: tr('Rank')
+    @onClick: function() g_game.talk('!rank') toggle() end
+  PopupMenuSeparator
+  PopupMenuButton
+    !text: tr('Uptime')
+    @onClick: function() g_game.talk('!uptime') toggle() end
+  PopupMenuSeparator
+  PopupMenuButton
+    !text: tr('Frags')
+    @onClick: function() g_game.talk('!frags') toggle() end
+  PopupMenuSeparator
+  PopupMenuButton
+    !text: tr('Sense')
+    @onClick: function() openSenseWindow() toggle() end
+  PopupMenuSeparator
+  PopupMenuButton
+    !text: tr('Auto loot')
+    @onClick: function() modules.game_autoloot.toggle() toggle() end

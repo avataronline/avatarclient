@@ -1,0 +1,9 @@
+Module
+  name: game_learnspells
+  description: NPC learn spells interface
+  author: AvatarOnline
+  website: www.otclient.info
+  sandboxed: true
+  scripts: [ learn ]
+  @onLoad: init()
+  @onUnload: terminate()

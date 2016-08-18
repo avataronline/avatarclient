@@ -1,0 +1,171 @@
+CharacterWidget < UIWidget
+  height: 14
+  background-color: alpha
+  &updateOnStates: |
+    function(self)
+      local children = self:getChildren()
+      for i=1,#children do
+        children[i]:setOn(self:isFocused())
+        CharacterList.updatePreview()
+      end
+    end
+  @onFocusChange: self:updateOnStates()
+  @onSetup: self:updateOnStates()
+
+  $focus:
+    background-color: #ffffff
+
+  Label
+    id: name
+    color: #FFFFFFDA
+    anchors.top: parent.top
+    anchors.left: parent.left
+    font: verdana-11px-rounded
+    text-auto-resize: true
+    background-color: alpha
+    text-offset: 2 0
+
+    $on:
+      color: #ffffff
+
+MainWindow
+  id: charactersWindow
+  !text: tr('Character List')
+  visible: false
+  image-source: /images/game/characterlist
+  image-auto-resize: true
+  @onEnter: CharacterList.doLogin()
+  @onEscape: CharacterList.hide(true)
+  @onSetup: |
+    g_keyboard.bindKeyPress('Up', function() self:getChildById('characters'):focusPreviousChild(KeyboardFocusReason) end, self)
+    g_keyboard.bindKeyPress('Down', function() self:getChildById('characters'):focusNextChild(KeyboardFocusReason) end, self)
+    self:setSize({width = 326, height = 245})
+
+  TextList
+    id: characters
+    width: 138
+    height: 156
+    background-color: #565656
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 16
+    margin-left: -7
+    background-color: #B8B8B8
+    padding: 1
+    focusable: false
+    vertical-scrollbar: characterListScrollBar
+    auto-focus: first
+
+  VerticalScrollBar
+    id: characterListScrollBar
+    anchors.top: prev.top
+    anchors.bottom: prev.bottom
+    anchors.left: prev.right
+    margin-left: 1
+    step: 14
+    pixels-scroll: true
+
+  Panel
+    id: outfitPanel
+    size: 150 153
+    anchors.top: prev.top
+    anchors.bottom: prev.bottom
+    anchors.right: parent.right
+    margin-right: -6
+    opacity: 0.9
+    margin-left: 20
+    
+    UICreature
+      id: outfitPreview
+      size: 90 90
+      anchors.top: parent.top
+      anchors.left: parent.left
+      margin-top: 10
+      margin-left: 5
+      fixed-creature-size: true
+
+    ProgressBar
+      background-color: #000000AA
+      anchors.top: next.top
+      anchors.right: next.right
+      anchors.left: next.left
+      anchors.bottom: next.bottom
+
+    ProgressBar
+      id: health
+      size: 50 10
+      background-color: #ff4444
+      anchors.top: outfitPreview.top
+      anchors.right: parent.right
+      margin-right: 5
+      margin-top: -5
+
+    ProgressBar
+      background-color: #000000AA
+      anchors.top: next.top
+      anchors.right: next.right
+      anchors.left: next.left
+      anchors.bottom: next.bottom
+
+    ProgressBar
+      id: mana
+      size: 50 10
+      background-color: #FFFF33
+      anchors.top: health.bottom
+      anchors.right: health.right
+
+    Label
+      id: level
+      height: 20
+      anchors.top: outfitPreview.bottom
+      anchors.left: parent.left
+      &baseText: 'Level:  '
+      font: verdana-11px-rounded
+      color: #ffffff
+      margin-left: 5
+      margin-top: 20
+      text-auto-resize: true
+
+    Label
+      id: server
+      height: 20
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      &baseText: 'Server:  %s'
+      font: verdana-11px-rounded
+      color: #ffffff
+      margin-left: 5
+      text-auto-resize: true
+
+  Label
+    id: accountStatusLabel
+    !text: tr('Free Account')
+    font: verdana-11px-rounded
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    margin-bottom: -7
+    text-auto-resize: true
+    color: #00FF00
+
+    $on:
+      color: #FF0000
+
+  Button
+    id: buttonCancel
+    !text: tr('Cancel')
+    width: 75
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    margin-bottom: -7
+    margin-right: -7
+    @onClick: CharacterList.hide(true)
+
+  Button
+    id: buttonOk
+    !text: tr('Ok')
+    width: 75
+    anchors.right: prev.left
+    anchors.bottom: prev.bottom
+    margin-right: 3
+    @onClick: CharacterList.doLogin()

@@ -1,0 +1,9 @@
+Module
+  name: game_others
+  description: Others features
+  author: AvatarOnline
+  website: none
+  sandboxed: true
+  scripts: [ others ]
+  @onLoad: init()
+  @onUnload: terminate()

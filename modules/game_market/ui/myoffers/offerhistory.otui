@@ -1,0 +1,88 @@
+OfferTableRow < TableRow
+  font: verdana-11px-monochrome
+  color: #cccccc
+  height: 15
+
+OfferTableColumn < TableColumn
+  font: verdana-11px-monochrome
+  background-color: alpha
+  text-offset: 5 0
+  color: #cccccc
+  width: 80
+
+OfferTableWarningColumn < OfferTableColumn
+  color: #e03d3d
+
+OfferTableHeaderRow < TableHeaderRow
+  font: verdana-11px-monochrome
+  color: #cccccc
+  height: 20
+
+OfferTableHeaderColumn < SortableTableHeaderColumn
+  font: verdana-11px-monochrome
+  text-offset: 2 0
+  color: #cccccc
+
+  $focus:
+    background-color: #294f6d
+    color: #ffffff
+
+Panel
+  background-color: #22283399
+  margin: 1
+
+  Table
+    id: historyTable
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    height: 400
+    padding: 1
+    focusable: false
+    background-color: #222833
+    border-width: 1
+    border-color: #191f27
+    table-data: historyTableData
+    row-style: OfferTableRow
+    column-style: OfferTableColumn
+    header-column-style: false
+    header-row-style: false
+
+    OfferTableHeaderRow
+      id: header
+      OfferTableHeaderColumn
+        !text: tr('Item Name')
+        width: 140
+      OfferTableHeaderColumn
+        !text: tr('Type')
+        width: 60
+      OfferTableHeaderColumn
+        !text: tr('Amount')
+        width: 80
+      OfferTableHeaderColumn
+        !text: tr('Total Price')
+        width: 80
+      OfferTableHeaderColumn
+        !text: tr('Piece Price')
+        width: 80
+      OfferTableHeaderColumn
+        !text: tr('Expires At')
+        width: 135
+      OfferTableHeaderColumn
+        !text: tr('State')
+        width: 70
+  TableData
+    id: historyTableData
+    anchors.top: historyTable.top
+    anchors.left: historyTable.left
+    anchors.right: historyTable.right
+    margin-top: 21
+    vertical-scrollbar: historyTableScrollBar
+
+  VerticalScrollBar
+    id: historyTableScrollBar
+    anchors.top: historyTable.top
+    anchors.bottom: historyTable.bottom
+    anchors.right: historyTable.right
+    step: 28
+    pixels-scroll: true

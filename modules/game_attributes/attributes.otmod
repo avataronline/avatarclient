@@ -1,0 +1,9 @@
+Module
+  name: game_attributes
+  description: Attributes window manager
+  author: AvatarOnline
+  website: none
+  scripts: [ attributes ]
+  sandboxed: true
+  @onLoad: init()
+  @onUnload: terminate()

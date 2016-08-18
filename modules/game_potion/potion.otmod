@@ -1,0 +1,9 @@
+Module
+  name: game_potion
+  description: Cauldron to make potions
+  author: AvatarOnline
+  website: www.otclient.info
+  sandboxed: true
+  scripts: [ potion ]
+  @onLoad: init()
+  @onUnload: terminate()

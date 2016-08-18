@@ -1,0 +1,9 @@
+Module
+  name: game_sounds
+  description: Module to receive and controle sounds in game
+  author: AvatarOnline
+  website: none
+  sandboxed: true
+  scripts: [ sounds ]
+  @onLoad: init()
+  @onUnload: terminate()

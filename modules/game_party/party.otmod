@@ -1,0 +1,9 @@
+Module
+  name: game_party
+  description: Party members
+  author: AvatarOnline
+  website: none
+  scripts: [ party ]
+  sandboxed: true
+  @onLoad: init()
+  @onUnload: terminate()

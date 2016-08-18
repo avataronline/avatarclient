@@ -1,0 +1,9 @@
+Module
+  name: game_autoloot
+  description: Auto loot
+  author: AvatarOnline
+  website: none
+  scripts: [ autoloot ]
+  sandboxed: true
+  @onLoad: init()
+  @onUnload: terminate()

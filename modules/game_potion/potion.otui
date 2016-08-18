@@ -1,0 +1,119 @@
+SlotItem < Item
+  anchors.top: prev.top
+  anchors.left: prev.right
+  margin-left: 1
+  
+  $first:
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-left: 10
+    margin-top: 10
+
+MainWindow
+  id: cauldronWindow
+  !text: tr('Cauldron')
+  size: 390 300
+
+
+  SlotItem
+    id: slot0
+  SlotItem
+    id: slot1
+  SlotItem
+    id: slot2
+  SlotItem
+    id: slot3
+    anchors.top: prev.bottom
+    anchors.left: slot0.left
+    margin-top: 1
+    margin-left: 0
+  SlotItem
+    id: slot4
+  SlotItem
+    id: slot5
+  SlotItem
+    id: slot6
+    anchors.top: prev.bottom
+    anchors.left: slot0.left
+    margin-top: 1
+    margin-left: 0
+  SlotItem
+    id: slot7
+  SlotItem
+    id: slot8
+
+  HorizontalScrollBar
+    id: quantityScroll
+    anchors.left: next.left
+    anchors.right: next.right
+    anchors.top: prev.bottom
+    margin-top: 4
+    show-value: true
+    minimum: 1
+    maximum: 100
+    step: 1
+
+  Button
+    id: check
+    !text: tr("Check recipes")
+    anchors.bottom: next.top
+    anchors.left: slot0.left
+    width: 100
+    margin-bottom: 1
+    @onClick: modules.game_potion.checkRecipes()
+
+  Button
+    id: make
+    !text: tr("Make")
+    anchors.bottom: parent.bottom
+    anchors.left: slot0.left
+    width: 100
+    enabled: false
+    @onClick: modules.game_potion.askToMake()
+
+  VerticalSeparator
+    anchors.bottom: parent.bottom
+    anchors.top: parent.top
+    anchors.left: slot8.right
+    margin-left: 20
+
+  Label
+    !text: tr('Potion name')
+    anchors.top: parent.top
+    anchors.left: prev.right
+    margin-left: 20
+
+  FlatLabel
+    id: potionName
+    font: verdana-11px-antialised
+    color: #aaaaaa
+    text-offset: 2 3
+    margin-top: 2
+    anchors.top: prev.bottom
+    anchors.left: prev.left
+    height: 20
+    width: 200
+
+  Label
+    !text: tr('Description')
+    anchors.top: prev.bottom
+    anchors.left: prev.left
+    margin-top: 2
+
+  FlatLabel
+    id: description
+    font: verdana-11px-antialised
+    color: #aaaaaa
+    text-offset: 2 3
+    margin-top: 2
+    anchors.top: prev.bottom
+    anchors.left: prev.left
+    height: 170
+    text-wrap: true
+    width: 200
+
+  ComboBox
+    id: recipesBox
+    anchors.left: prev.left
+    anchors.bottom: parent.bottom
+    width: 200

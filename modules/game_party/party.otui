@@ -1,0 +1,98 @@
+PartnerWidget < UIWidget
+  size: 164 32
+  $first:
+    anchors.top: parent.top
+    margin-top: -1
+
+  anchors.top: prev.bottom
+  anchors.right: parent.right
+  margin-top: 1
+
+  Label
+    id: name
+    color: #FFFFFFDA
+    anchors.top: parent.top
+    anchors.left: parent.left
+    text-auto-resize: true
+    margin-left: 60
+    margin-top: 2
+    text-align: center
+  
+  Label
+    id: level
+    font: terminus-10px
+    color: #ffff00
+    anchors.bottom: parent.bottom
+    anchors.right: health.left
+    text-auto-resize: true
+    margin-right: 4
+    margin-bottom: 3
+
+  ProgressBar
+    background-color: #000000AA
+    anchors.top: next.top
+    anchors.right: next.right
+    anchors.left: next.left
+    anchors.bottom: next.bottom
+
+  ProgressBar
+    id: health
+    size: 110 5
+    background-color: #ff4444
+    anchors.top: name.bottom
+    anchors.right: parent.right
+    margin-right: 5
+    margin-top: 4
+
+  ProgressBar
+    background-color: #000000AA
+    anchors.top: next.top
+    anchors.right: next.right
+    anchors.left: next.left
+    anchors.bottom: next.bottom
+
+  ProgressBar
+    id: mana
+    size: 110 5
+    background-color: #4444ff
+    anchors.top: health.bottom
+    anchors.right: health.right
+
+
+UIWindow
+  id: partyWindow
+  size: 164 300
+  visible: false
+  opacity: 1
+
+  Label
+    image-source: /images/game/group
+    size: 164 20
+    anchors.top: parent.top
+    anchors.right: parent.right
+
+    UIWidget
+      image-source: /images/ui/button_minimize
+      size: 13 13
+      anchors.top: parent.top
+      anchors.right: parent.right
+      margin-right: 5
+      margin-top: 4
+      @onClick: toggleMembers(self)
+  
+  VerticalScrollBar
+    id: itemsPanelListScrollBar
+    anchors.top: partyMembers.top
+    anchors.bottom: parepartyMembersnt.bottom
+    anchors.right: partyMembers.right
+    step: 24
+    pixels-scroll: true
+    opacity: 0
+  
+  ScrollablePanel
+    id: partyMembers
+    size: 164 232
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 20
+    vertical-scrollbar: itemsPanelListScrollBar

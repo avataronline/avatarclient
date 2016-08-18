@@ -1,0 +1,36 @@
+SpellIcon < Item2
+  width: 32
+  height: 32
+  focusable: false
+
+SpellProgress < UIProgressRect
+  background: #2E2E2EAA
+  width: 32
+  height: 32
+  percent: 100
+  focusable: false
+  font: verdana-11px-rounded
+  color: #FFFFFF
+
+MiniWindow
+  icon: /images/topbuttons/cooldowns
+  id: cooldownBar
+  !text: tr('Spells')
+  &save: true
+  @onClose: modules.game_cooldown.toggle()
+
+  MiniWindowContents
+  Panel
+    id: content
+    anchors.top: parent.top
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 34
+    margin-left: 24
+    margin-right: 24
+    margin-bottom: 12
+    layout: grid
+      cell-size: 34 34
+      flow: true
+      auto-spacing: true

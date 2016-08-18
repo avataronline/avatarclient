@@ -1,0 +1,11 @@
+Module
+  name: game_cooldown
+  description: cooldown
+  author: AvatarOnline
+  website: none
+  autoload: true
+  autoload-priority: 1000
+  scripts: [ cooldown ]
+  sandboxed: true
+  @onLoad: init()
+  @onUnload: terminate()

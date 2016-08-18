@@ -1,1 +1,2 @@
 *.lua text eol=lf
+modules/game_tutorial/configs_pt.lua text eol=crlf

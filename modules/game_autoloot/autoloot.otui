@@ -1,0 +1,130 @@
+SlotItem < Item
+  anchors.left: parent.left
+  anchors.top: prev.bottom
+  margin-top: 8
+  virtual: true
+
+  $first:
+    anchors.top: parent.top
+    margin-top: -5
+
+SlotItem2 < SlotItem
+  anchors.left: parent.left
+  anchors.top: prev.bottom
+  margin-top: 8
+  virtual: true
+  margin-left: 120
+
+SelectButton < Button
+  !text: tr('Select')
+  width: 70
+  enabled: true
+  anchors.left: prev.right
+  anchors.top: prev.top
+  margin-left: 5
+  margin-top: 5
+
+MainWindow
+  id: autoLootWindow
+  !text: tr('Auto loot')
+  size: 260 300
+
+  SlotItem
+    id: slot1
+  SelectButton
+    @onClick: modules.game_autoloot.startChooseItem("slot1")
+
+  SlotItem
+    id: slot2
+  SelectButton
+    @onClick: modules.game_autoloot.startChooseItem("slot2")
+
+  SlotItem
+    id: slot3
+  SelectButton
+    @onClick: modules.game_autoloot.startChooseItem("slot3")
+
+  SlotItem
+    id: slot4
+  SelectButton
+    @onClick: modules.game_autoloot.startChooseItem("slot4")
+
+  SlotItem
+    id: slot5
+  SelectButton
+    @onClick: modules.game_autoloot.startChooseItem("slot5")
+
+  SlotItem2
+    id: slot6
+    anchors.top: parent.top
+    margin-top: -5
+  SelectButton
+    @onClick: modules.game_autoloot.startChooseItem("slot6")  
+
+  SlotItem2
+    id: slot7
+  SelectButton
+    @onClick: modules.game_autoloot.startChooseItem("slot7")
+
+  SlotItem2
+    id: slot8
+  SelectButton
+    @onClick: modules.game_autoloot.startChooseItem("slot8")
+
+  SlotItem2
+    id: slot9
+  SelectButton
+    @onClick: modules.game_autoloot.startChooseItem("slot9")
+
+  SlotItem2
+    id: slot10
+  SelectButton
+    @onClick: modules.game_autoloot.startChooseItem("slot10")
+
+  CheckBox
+    id: moneyCheckBox
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    @onClick: modules.game_autoloot.setMoney()
+  Label
+    !text: tr("Coletar dinheiro")
+    anchors.left: prev.right
+    anchors.top: prev.top
+
+  CheckBox
+    id: stonesCheckBox
+    anchors.bottom: prev.bottom
+    anchors.left: parent.left
+    margin-bottom: 20
+    @onClick: modules.game_autoloot.setStone()
+  Label
+    !text: tr("Coletar stones raras")
+    anchors.left: prev.right
+    anchors.top: prev.top
+
+  Button
+    !text: tr("Fechar")
+    width: 80
+    enabled: true
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    @onClick: modules.game_autoloot.toggle()
+
+  Button
+    !text: tr("Limpar tudo")
+    width: 80
+    enabled: true
+    anchors.bottom: prev.top
+    anchors.right: parent.right
+    margin-bottom: 2
+    @onClick: modules.game_autoloot.clearAll()
+
+  Button
+    id: updateButton
+    !text: tr("Atualizar")
+    width: 80
+    enabled:false
+    anchors.bottom: prev.top
+    anchors.right: parent.right
+    margin-bottom: 2
+    @onClick: modules.game_autoloot.updateList()

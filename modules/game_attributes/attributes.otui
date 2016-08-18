@@ -1,0 +1,121 @@
+SkillWidget < UIWidget
+  size: 185 20
+  text-align: left
+  text-offset: 6 0
+  anchors.top: prev.bottom
+  anchors.left: parent.left
+
+  $first:
+    anchors.top: parent.top
+    margin-top: 4
+  UIWidget
+    id: addSkill
+    size: 36 16
+    font: verdana-11px-rounded
+    text-align: center
+    color: #00ff00
+    &value: 0
+    background-color: #0000002A
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin-top: 2
+    margin-right: 4
+  Button
+    size: 16 16
+    color: #00FF00F0
+    !text: '+'
+    anchors.top: parent.top
+    anchors.right: prev.left
+    font: verdana-11px-rounded
+    margin-right: 4
+    margin-top: 2  
+    @onClick: incrementSkill(self)
+  Button
+    size: 16 16
+    color: #FF0000F0
+    !text: '-'
+    anchors.top: parent.top
+    anchors.right: prev.left
+    font: verdana-11px-rounded
+    margin-right: 2
+    margin-top: 2
+    @onClick: decrementSkill(self)
+  UIWidget
+    id: currentSkill
+    size: 32 16
+    text-align: center
+    &value: 0
+    anchors.top: parent.top
+    anchors.right: prev.left
+    margin-top: 2
+    margin-right: 5
+
+PointsLabel < Label
+  anchors.bottom: parent.bottom
+  font: verdana-11px-rounded
+
+MiniWindow
+  icon: /images/topbuttons/attributes
+  id: attributesWindow
+  !text: tr('Attributes')
+  height: 160
+  @onClose: modules.game_attributes.onMiniWindowClose()
+  &save: true
+  
+  UIWidget
+    size: 16 16
+    !text: '?'
+    !tooltip: 'Você pode adiquirir pontos ao upar level ou trocando por stones raras no npc Doflamingo.'
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin-right: 36
+    margin-top: 4
+
+  MiniWindowContents
+    SkillWidget
+      id: skillCritical
+      !text: 'Critical'
+      &type: 1
+    SkillWidget
+      id: skillRegen
+      !text: 'Regen'
+      &type: 2
+    SkillWidget
+      id: skillDodge
+      !text: 'Dodge'
+      &type: 3
+    SkillWidget
+      id: skillDrain
+      !text: 'Drain'
+      &type: 4      
+
+    Button
+      !text: 'Apply'
+      width: 80
+      anchors.right: parent.right
+      anchors.bottom: next. bottom
+      margin-right: 10
+      @onClick: applyAttributes()
+    Button
+      !text: 'Clear'
+      width: 80
+      anchors.left: parent.left
+      anchors.bottom: next.top
+      margin-bottom: 10
+      margin-left: 10
+      @onClick: clearAll()
+
+    PointsLabel
+      id: points
+      &baseText: 'Points: %d'
+      anchors.left: parent.left
+      margin-left: 3
+      text-auto-resize: true
+
+    PointsLabel
+      id: cost
+      !text: 'Cost: 0'
+      &baseText: 'Cost: %d'
+      anchors.left: parent.left
+      margin-left: 130
+      text-auto-resize: true

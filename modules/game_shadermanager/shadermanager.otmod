@@ -1,0 +1,9 @@
+Module
+  name: game_shadermanager
+  description: Manager to control shaders execution
+  author: AvatarOnline
+  website: none
+  sandboxed: true
+  scripts: [ shadermanager ]
+  @onLoad: init()
+  @onUnload: terminate()

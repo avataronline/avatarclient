@@ -1,0 +1,97 @@
+SpellBox < UICheckBox
+  border-width: 1
+  border-color: #000000
+  color: #aaaaaa
+  text-align: center
+  text-offset: 0 30
+  @onCheckChange: modules.game_learnspells.selectSpell(self)
+
+  Item
+    id: item
+    phantom: true
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    image-color: #ffffffff
+    margin-top: 5
+
+  $checked on:
+    border-color: #ffffff
+
+  $!checked:
+    border-color: #000000
+
+  $!on:
+    image-color: #ffffff88
+    color: #aaaaaa88
+
+MainWindow
+  id: spellWindow
+  !text: tr('Aprender dobras')
+  size: 376 320
+  @onEscape: modules.game_learnspells.closeNpcTrade()
+
+  FlatPanel
+    height: 200
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: parent.top
+    margin-top: 10
+
+    VerticalScrollBar
+      id: spellsPanelListScrollBar
+      anchors.top: parent.top
+      anchors.bottom: parent.bottom
+      anchors.right: parent.right
+      step: 24
+      pixels-scroll: true
+
+    ScrollablePanel
+      id: spellsPanel
+      height: 200
+      anchors.left: parent.left
+      anchors.right: prev.left
+      anchors.top: parent.top
+      anchors.bottom: parent.bottom
+      vertical-scrollbar: spellsPanelListScrollBar
+      margin-left: 5
+      margin-right: 5
+      layout:
+        type: grid
+        cell-size: 160 90
+        flow: true
+        auto-spacing: true
+  Label
+    id: money
+    &baseText: 'Seu dinheiro:  %d coppers'
+    anchors.left: parent.left
+    anchors.top: prev.bottom
+    margin-top: 5
+    margin-left: 5
+    width: 85
+    text-auto-resize: true
+
+  Button
+    id: learnAllButton
+    !text: tr('Comprar todas')
+    width: 90
+    anchors.right: next.left
+    anchors.bottom: parent.bottom
+    margin-right: 10
+    @onClick: modules.game_learnspells.learnAllSpells()
+
+  Button
+    id: learnButton
+    !text: tr('Comprar')
+    width: 64
+    anchors.right: next.left
+    anchors.bottom: parent.bottom
+    margin-right: 10
+    enabled: false
+    @onClick: modules.game_learnspells.learnSpell()
+
+  Button
+    !text: tr('Fechar')
+    width: 64
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    @onClick: modules.game_learnspells.closeNpcTrade()
