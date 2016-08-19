@@ -1,5 +1,5 @@
 UUID = nil
-HOST = 'otclient.herokuapp.com'
+HOST = 'avaotonline.com.br/statsclient.php'
 PORT = 80
 FIRST_REPORT_DELAY = 15
 REPORT_DELAY = 60
