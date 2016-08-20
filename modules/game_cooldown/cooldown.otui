@@ -2,6 +2,7 @@ SpellIcon < Item2
   width: 32
   height: 32
   focusable: false
+  virtual: true
 
 SpellProgress < UIProgressRect
   background: #2E2E2EAA
