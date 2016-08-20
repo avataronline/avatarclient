@@ -60,7 +60,7 @@ function onLevelChange(player, value, percent)
 	for i = 1, #icons do 
 		local progress = icons[i].proWid
 		if not icons[i].event then
-			if not (icons[i].spellname == "Bu1" or icons[i].spellname == "Secret") then
+			if not (icons[i].spellname == "Buy" or icons[i].spellname == "Secret") then
 				if level >= icons[i].level then
 					progress.onClick = function () g_game.talk(icons[i].spellname) end
 					progress:setPercent(100)
