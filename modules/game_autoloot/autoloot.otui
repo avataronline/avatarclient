@@ -2,18 +2,19 @@ SlotItem < Item
   anchors.left: parent.left
   anchors.top: prev.bottom
   margin-top: 8
+  margin-left: 16
   virtual: true
 
   $first:
     anchors.top: parent.top
-    margin-top: -5
+    margin-top: 36
 
 SlotItem2 < SlotItem
   anchors.left: parent.left
   anchors.top: prev.bottom
   margin-top: 8
   virtual: true
-  margin-left: 120
+  margin-left: 136
 
 SelectButton < Button
   !text: tr('Select')
@@ -28,6 +29,7 @@ MainWindow
   id: autoLootWindow
   !text: tr('Auto loot')
   size: 260 300
+  padding: 0
 
   SlotItem
     id: slot1
@@ -57,7 +59,7 @@ MainWindow
   SlotItem2
     id: slot6
     anchors.top: parent.top
-    margin-top: -5
+    margin-top: 36
   SelectButton
     @onClick: modules.game_autoloot.startChooseItem("slot6")  
 
@@ -85,9 +87,11 @@ MainWindow
     id: moneyCheckBox
     anchors.bottom: parent.bottom
     anchors.left: parent.left
+    margin-bottom: 16
+    margin-left: 16
     @onClick: modules.game_autoloot.setMoney()
   Label
-    !text: tr("Coletar dinheiro")
+    !text: tr("Collect all money")
     anchors.left: prev.right
     anchors.top: prev.top
 
@@ -96,35 +100,45 @@ MainWindow
     anchors.bottom: prev.bottom
     anchors.left: parent.left
     margin-bottom: 20
+    margin-left: 16
     @onClick: modules.game_autoloot.setStone()
   Label
-    !text: tr("Coletar stones raras")
+    !text: tr("Collect all stones")
     anchors.left: prev.right
     anchors.top: prev.top
 
   Button
-    !text: tr("Fechar")
+    !text: tr("Clear all")
     width: 80
     enabled: true
     anchors.bottom: parent.bottom
     anchors.right: parent.right
-    @onClick: modules.game_autoloot.toggle()
-
-  Button
-    !text: tr("Limpar tudo")
-    width: 80
-    enabled: true
-    anchors.bottom: prev.top
-    anchors.right: parent.right
-    margin-bottom: 2
+    margin-bottom: 18
+    margin-right: 16
     @onClick: modules.game_autoloot.clearAll()
 
   Button
     id: updateButton
-    !text: tr("Atualizar")
+    !text: tr("Update")
     width: 80
     enabled:false
     anchors.bottom: prev.top
-    anchors.right: parent.right
+    anchors.right: prev.right
     margin-bottom: 2
     @onClick: modules.game_autoloot.updateList()
+
+  UIButton
+    @onClick: modules.game_autoloot.toggle()
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin-top: 5
+    margin-right: 5
+    size: 14 14
+    image-source: /images/ui/miniwindow_buttons
+    image-clip: 28 0 14 14
+
+    $hover:
+      image-clip: 28 14 14 14
+
+    $pressed:
+      image-clip: 28 28 14 14

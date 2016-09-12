@@ -2,6 +2,7 @@ SenseWindow < Window
   id: sense
   !text: tr("Sense Player")
   size: 180 100
+  padding: 0
   anchors.horizontalCenter: parent.horizontalCenter
   anchors.verticalCenter: parent.verticalCenter
   margin-left: -100
@@ -10,48 +11,66 @@ SenseWindow < Window
     !text: tr("Nick: ")
     anchors.top: parent.top
     anchors.left: parent.left
-    margin-top: 4
+    margin-top: 40
+    margin-left: 16
 
   TextEdit
     id: player
     width: 110
-    anchors.top: parent.top
+    anchors.top: prev.top
     anchors.left: prev.right
     margin-left: 5
+    margin-top: -5
 
   Button
-    !text: tr("Ok")
-    width: 70
+    !text: tr("Find")
     anchors.bottom: parent.bottom
     anchors.left: parent.left
-    @onClick: function() modules.game_others.sense() end
-
-  Button
-    !text: tr("Cancel")
-    width: 70
-    anchors.bottom: parent.bottom
     anchors.right: parent.right
-    @onClick: self:getParent():destroy()
+    margin: 10
+    @onClick: modules.game_others.sense()
 
-PopupMenu
+  UIButton
+    @onClick: modules.game_others.closeSenseWindow()
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin-top: 5
+    margin-right: 5
+    size: 14 14
+    image-source: /images/ui/miniwindow_buttons
+    image-clip: 28 0 14 14
+
+    $hover:
+      image-clip: 28 14 14 14
+
+    $pressed:
+      image-clip: 28 28 14 14
+    
+
+OthersPopup < PopupMenu
   id: main
   width: 100
   PopupMenuButton
+    id: asd1
     !text: tr('Rank')
-    @onClick: function() g_game.talk('!rank') toggle() end
+    @onClick: function() g_game.talk('!rank') modules.game_others.destroyOthersMenu() end
   PopupMenuSeparator
   PopupMenuButton
+    id: asd123
     !text: tr('Uptime')
-    @onClick: function() g_game.talk('!uptime') toggle() end
+    @onClick: function() g_game.talk('!uptime') modules.game_others.destroyOthersMenu() end
   PopupMenuSeparator
   PopupMenuButton
+    id: asd135
     !text: tr('Frags')
-    @onClick: function() g_game.talk('!frags') toggle() end
+    @onClick: function() g_game.talk('!frags') modules.game_others.destroyOthersMenu() end
   PopupMenuSeparator
   PopupMenuButton
+    id: 1231asd
     !text: tr('Sense')
-    @onClick: function() openSenseWindow() toggle() end
+    @onClick: function() modules.game_others.openSenseWindow() modules.game_others.destroyOthersMenu() end
   PopupMenuSeparator
   PopupMenuButton
+    id: 1234sad
     !text: tr('Auto loot')
-    @onClick: function() modules.game_autoloot.toggle() toggle() end
+    @onClick: function() modules.game_autoloot.toggle() modules.game_others.destroyOthersMenu() end

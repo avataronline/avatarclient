@@ -6,13 +6,14 @@ SlotItem < Item
   $first:
     anchors.left: parent.left
     anchors.top: parent.top
-    margin-left: 10
-    margin-top: 10
+    margin-left: 26
+    margin-top: 36
 
 MainWindow
   id: cauldronWindow
   !text: tr('Cauldron')
   size: 390 300
+  padding: 0
 
 
   SlotItem
@@ -68,20 +69,24 @@ MainWindow
     anchors.bottom: parent.bottom
     anchors.left: slot0.left
     width: 100
+    margin-bottom: 10
     enabled: false
     @onClick: modules.game_potion.askToMake()
-
+    
   VerticalSeparator
     anchors.bottom: parent.bottom
     anchors.top: parent.top
     anchors.left: slot8.right
     margin-left: 20
+    margin-top: 36
+    margin-bottom: 16
 
   Label
     !text: tr('Potion name')
     anchors.top: parent.top
     anchors.left: prev.right
     margin-left: 20
+    margin-top: 36
 
   FlatLabel
     id: potionName
@@ -117,3 +122,20 @@ MainWindow
     anchors.left: prev.left
     anchors.bottom: parent.bottom
     width: 200
+    margin-bottom: 10
+
+  UIButton
+    @onClick: modules.game_potion.destroyCauldron()
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin-top: 5
+    margin-right: 5
+    size: 14 14
+    image-source: /images/ui/miniwindow_buttons
+    image-clip: 28 0 14 14
+
+    $hover:
+      image-clip: 28 14 14 14
+
+    $pressed:
+      image-clip: 28 28 14 14
