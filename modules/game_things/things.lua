@@ -26,6 +26,7 @@ function load()
   g_game.enableFeature(GameSpritesU32)
   g_game.enableFeature(GameSpritesAlphaChannel)
   g_game.enableFeature(GamePlayerMarket)
+  g_game.enableFeature(GamePlayerMounts)
 
   local datPath, sprPath
   if filename then
